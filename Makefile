@@ -3,7 +3,7 @@
 CC := clang++
 LD := clang++
 
-LLVM_MODULES = core
+LLVM_MODULES = all
 
 CXXFLAGS := $(shell llvm-config --cppflags)
 CXXFLAGS += -std=c++20
@@ -31,7 +31,3 @@ clu.exe: clu.o
 clu.o: clu.cpp
 	$(CC) $(CXXFLAGS) -c $^ -o $@
 	
-
-clean:
-	rm clu.o
-	rm clue.exe
