@@ -1,4 +1,4 @@
-#include "clu.h"
+#include "LuaWriter.h"
 
 void clu::LuaWriter::debugPrintModule(llvm::raw_ostream& out, llvm::Module& module) {
     auto& functions = module.getFunctionList();
@@ -16,26 +16,4 @@ void clu::LuaWriter::debugPrintModule(llvm::raw_ostream& out, llvm::Module& modu
             llvm::outs() << "            Text: " << current_instruction << "\n";
         }
     }
-}
-
-int main(int argc, const char ** argv) {
-    // using namespace llvm;
-
-    if (argc == 1) {
-        llvm::errs() << "Path to file expected\n";
-        return 1;
-    }
-    
-    llvm::LLVMContext context{};
-    llvm::SMDiagnostic error{};
-    clu::LuaWriter lua_writer{};
-    
-    std::unique_ptr<llvm::Module> module = parseIRFile(argv[1], error, context);
-    if (!module) {
-        error.print(argv[0], llvm::errs());
-    }
-
-    lua_writer.debugPrintModule(llvm::outs(), *module);    
-    
-    return 0;
 }

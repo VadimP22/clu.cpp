@@ -1,3 +1,5 @@
+#pragma once
+
 #include "llvm/Support/raw_ostream.h"
 #include <llvm/IRReader/IRReader.h>
 #include <llvm/IR/LLVMContext.h>

@@ -3,6 +3,9 @@
 CC := clang++
 LD := clang++
 
+SRC := $(wildcard *.cpp)
+OBJ := $(SRC:%.cpp=%.o)
+
 LLVM_MODULES = all
 
 CXXFLAGS := $(shell llvm-config --cppflags)
@@ -16,18 +19,10 @@ SYSTEM_LIBS := $(shell llvm-config --system-libs $(LLVM_MODULES))
 
 all: clu.exe
 
-debug:
-	@echo $(CXXFLAGS)
-	@echo ======
-	@echo $(LDFLAGS)
-	@echo ======
-	@echo $(LLVM_LIBS)
-	@echo ======
-	@echo $(SYSTEM_LIBS)
-
-clu.exe: clu.o
+clu.exe: $(OBJ)
 	$(LD) $(LDFLAGS) $(LLVM_LIBS) $^ -o $@
 
-clu.o: clu.cpp
+
+%.o: %.cpp
 	$(CC) $(CXXFLAGS) -c $^ -o $@
-	
+		
