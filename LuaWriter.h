@@ -15,8 +15,9 @@ public:
     void debugPrintModule(llvm::raw_ostream&, llvm::Module&);
 
 private:
-    void writeFunction(std::ostream&, llvm::Function&);
-    void writeBasicBlock(std::ostream&, llvm::BasicBlock&);
+    void writeFunction(llvm::raw_ostream&, llvm::Function&);
+    void writeBasicBlock(llvm::raw_ostream&, llvm::BasicBlock&);
+    void writeInstruction(llvm::raw_ostream&, llvm::Instruction&);
 
     std::string out_file_path_;
 };

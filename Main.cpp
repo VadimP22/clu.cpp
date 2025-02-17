@@ -18,6 +18,8 @@ int main(int argc, const char ** argv) {
     }
 
     lua_writer.debugPrintModule(llvm::outs(), *module);    
+    llvm::outs() << "==========\n";
+    lua_writer.writeModule(llvm::outs(), *module);
     
     return 0;
 }
