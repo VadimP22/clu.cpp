@@ -20,9 +20,11 @@ SYSTEM_LIBS := $(shell llvm-config --system-libs $(LLVM_MODULES))
 all: clu.exe
 
 clu.exe: $(OBJ)
-	$(LD) $(LDFLAGS) $(LLVM_LIBS) $^ -o $@
+	@echo LD $@
+	@$(LD) $(LDFLAGS) $(LLVM_LIBS) $^ -o $@
 
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) -c $^ -o $@
+	@echo CC $@
+	@$(CC) $(CXXFLAGS) -c $^ -o $@
 		
